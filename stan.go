@@ -26,7 +26,7 @@ func (a *application) startSubNats() {
 	go a.publishNats(sc)
 
 	_, err = sc.Subscribe("sub", func(msg *stan.Msg) {
-		parseJsonFile(msg.Data)
+		a.parseJsonFile(msg.Data)
 	}, stan.DurableName("durable-1"))
 
 	if err != nil {
